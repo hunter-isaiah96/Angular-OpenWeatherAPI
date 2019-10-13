@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    
+}
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Oxygen', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+app-root {
+    min-height: 100%;
+    display: flex;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.parralax-image-holder {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scale(1.5);
+}
+.parralax-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://i.pinimg.com/originals/2b/a0/98/2ba098cc162729f0845db4c265b055c5.jpg');
+    background-position: 50%;
+    background-size:  cover;
+    background-repeat: no-repeat;
+}
