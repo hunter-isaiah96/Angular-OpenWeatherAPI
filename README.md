@@ -1,3 +1,5 @@
+This is my first time Angular (apart from the use of AngularJS). I was inspired by the dev.to weather application project alongside a UI I saw on dribbble.
+
 # WeatherApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
