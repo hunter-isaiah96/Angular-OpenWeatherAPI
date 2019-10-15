@@ -1,4 +1,4 @@
-This is my first time Angular (apart from the use of AngularJS). I was inspired by the dev.to weather application project alongside a UI I saw on dribbble.
+This is my first time Angular (apart from the use of AngularJS). I was inspired by the dev.to weather application project alongside a UI I saw on dribbble. [See it live!](https://angular-weather.netlify.com)
 
 # WeatherApp
 
