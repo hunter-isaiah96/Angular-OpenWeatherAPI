@@ -1,0 +1,15 @@
+li {
+    display: flex;
+    color: rgb(236, 239, 245);
+    font-weight: 400;
+
+    .descriptor {
+        flex: 1;
+    }
+}
+
+:host:not(:last-child) {
+    li {
+        margin-bottom: 35px;
+    }
+}

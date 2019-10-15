@@ -1,5 +1,6 @@
 export class ForecastModel implements RootObject {
-    city: City;    cod: string;
+    city: City;
+    cod: string;
     message: number;
     cnt: number;
     list: List[];

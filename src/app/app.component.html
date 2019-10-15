@@ -1,46 +1,37 @@
-<div class="app" parralaxBackground>
+<div class="app" *ngIf="forecast.hasOwnProperty('list')" parralaxBackground>
+  <button class="hamburger hamburger--slider" type="button" [class.is-active]="menuOpen" (click)="menuOpen = !menuOpen">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
   <div class="parralax-image-holder">
     <div class="parralax-image"></div>
   </div>
   <div class="current-weather">
     <p class="logo">the.weather</p>
     <div class="details">
-      <h1>{{ forecast?.list[0]?.temp.day.toFixed() }}&#176;F</h1>
+      <h1>{{ forecast.list[0].temp.day.toFixed() }}&#176;</h1>
       <p>
-        {{ forecast?.city?.name }}
+        {{ forecast.city.name }}
         <span>{{ date }}</span>
       </p>
-      <img src="http://openweathermap.org/img/wn/{{ forecast?.list[0].weather && forecast?.list[0].weather[0].icon }}.png" />
+      <img src="http://openweathermap.org/img/wn/{{ forecast.list[0].weather && forecast.list[0].weather[0].icon }}.png" />
     </div>
   </div>
-  <div class="menu">
-    <input type="text" placeholder="Zip Code"/>
+  <div class="menu" [class.is-open]="menuOpen">
+    <form #zipForm="ngForm" (ngSubmit)="getWeatherData(zipForm)">
+      <input name="zip" type="text" placeholder="Zip Code" maxlength="5" ngModel numberInput/>
+    </form>
     <section class="weather-details">
+      <p class="title">Current Weather Details</p>
       <ul>
-        <li>
-          <span class="descriptor">No Recent Searches</span>
-        </li>
+        <forecast-item class="item" descriptor="Cloudy" [value]="forecast.list[0].clouds"></forecast-item>
+        <forecast-item class="item" descriptor="Humidity" [value]="forecast.list[0].humidity"></forecast-item>
+        <forecast-item class="item" descriptor="Wind" [value]="forecast.list[0].speed"></forecast-item>
       </ul>
     </section>
     <section class="weather-details">
-      <p class="title">Weather Details</p>
-      <ul>
-        <li>
-          <span class="descriptor">Cloudy</span>
-          <span class="value">{{ forecast?.list[0]?.clouds }}%</span>
-        </li>
-        <li>
-          <span class="descriptor">Humidity</span>
-          <span class="value">{{ forecast?.list[0].humidity }}%</span>
-        </li>
-        <li>
-          <span class="descriptor">Wind</span>
-          <span class="value">{{ forecast?.list[0].speed }} mp/H</span>
-        </li>
-      </ul>
-    </section>
-    <section class="weather-details">
-      <p class="title">Next Days</p>
+      <p class="title">Rest Of The Week</p>
       <ul>
         <li class="has-list" *ngFor="let item of forecast.list | slice:1;">
           <p class="heading">
@@ -54,22 +45,10 @@
             }) }}
           </p>
           <ul class="nested">
-            <li>
-              <span class="descriptor">Cloudy</span>
-              <span class="value">{{ item?.temp?.day }} &#176;F</span>
-            </li>
-            <li>
-              <span class="descriptor">Cloudy</span>
-              <span class="value">{{ item?.clouds }}%</span>
-            </li>
-            <li>
-              <span class="descriptor">Humidity</span>
-              <span class="value">{{ item?.humidity }}%</span>
-            </li>
-            <li>
-              <span class="descriptor">Wind</span>
-              <span class="value">{{ item?.speed }} mp/H</span>
-            </li>
+            <forecast-item class="item" descriptor="Temperature" [value]="item.temp.day" metric="&#176;"></forecast-item>
+            <forecast-item class="item" descriptor="Cloudy" [value]="item.clouds"></forecast-item>
+            <forecast-item class="item" descriptor="Humidity" [value]="item.humidity"></forecast-item>
+            <forecast-item class="item" descriptor="Wind" [value]="item.speed"></forecast-item>
           </ul>
         </li>
       </ul>
