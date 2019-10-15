@@ -14,7 +14,7 @@ export class WeatherApiService {
     navigator.geolocation.getCurrentPosition(position => {
       this.http
         .get(
-          `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial&appid=2f700b156c75ca2109da827f99465c40`
+          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial&appid=2f700b156c75ca2109da827f99465c40`
         )
         .toPromise()
         .then(data => Object.assign(this.forecast, data));
@@ -25,7 +25,7 @@ export class WeatherApiService {
   getForecast(zip: string) {
     this.http
       .get(
-        `http://api.openweathermap.org/data/2.5/forecast/daily?zip=${zip}&units=imperial&appid=2f700b156c75ca2109da827f99465c40`
+        `https://api.openweathermap.org/data/2.5/forecast/daily?zip=${zip}&units=imperial&appid=2f700b156c75ca2109da827f99465c40`
       )
       .toPromise()
       .then(data => Object.assign(this.forecast, data));
