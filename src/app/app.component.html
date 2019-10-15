@@ -1,5 +1,10 @@
 <div class="app" *ngIf="forecast.hasOwnProperty('list')" parralaxBackground>
-  <button class="hamburger hamburger--slider" type="button" [class.is-active]="menuOpen" (click)="menuOpen = !menuOpen">
+  <button
+    class="hamburger hamburger--slider"
+    type="button"
+    [class.is-active]="menuOpen"
+    (click)="menuOpen = !menuOpen"
+  >
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
@@ -15,40 +20,82 @@
         {{ forecast.city.name }}
         <span>{{ date }}</span>
       </p>
-      <img src="http://openweathermap.org/img/wn/{{ forecast.list[0].weather && forecast.list[0].weather[0].icon }}.png" />
+      <img
+        src="http://openweathermap.org/img/wn/{{
+          forecast.list[0].weather && forecast.list[0].weather[0].icon
+        }}.png"
+      />
     </div>
   </div>
   <div class="menu" [class.is-open]="menuOpen">
     <form #zipForm="ngForm" (ngSubmit)="getWeatherData(zipForm)">
-      <input name="zip" type="text" placeholder="Zip Code" maxlength="5" ngModel numberInput/>
+      <input
+        name="zip"
+        type="text"
+        placeholder="Zip Code"
+        maxlength="5"
+        ngModel
+        numberInput
+      />
     </form>
     <section class="weather-details">
       <p class="title">Current Weather Details</p>
       <ul>
-        <forecast-item class="item" descriptor="Cloudy" [value]="forecast.list[0].clouds"></forecast-item>
-        <forecast-item class="item" descriptor="Humidity" [value]="forecast.list[0].humidity"></forecast-item>
-        <forecast-item class="item" descriptor="Wind" [value]="forecast.list[0].speed"></forecast-item>
+        <forecast-item
+          class="item"
+          descriptor="Cloudy"
+          [value]="forecast.list[0].clouds"
+        ></forecast-item>
+        <forecast-item
+          class="item"
+          descriptor="Humidity"
+          [value]="forecast.list[0].humidity"
+        ></forecast-item>
+        <forecast-item
+          class="item"
+          descriptor="Wind"
+          [value]="forecast.list[0].speed"
+        ></forecast-item>
       </ul>
     </section>
     <section class="weather-details">
       <p class="title">Rest Of The Week</p>
       <ul>
-        <li class="has-list" *ngFor="let item of forecast.list | slice:1;">
+        <li class="has-list" *ngFor="let item of forecast.list | slice: 1">
           <p class="heading">
-            {{ moment.unix(item.dt).calendar(null, {
-                lastDay : '[Yesterday]',
-                sameDay : '[Today]',
-                nextDay : '[Tomorrow]',
-                lastWeek : '[last] dddd',
-                nextWeek : 'dddd',
-                sameElse : 'L'
-            }) }}
+            {{
+              moment.unix(item.dt).calendar(null, {
+                lastDay: "[Yesterday]",
+                sameDay: "[Today]",
+                nextDay: "[Tomorrow]",
+                lastWeek: "[last] dddd",
+                nextWeek: "dddd",
+                sameElse: "L"
+              })
+            }}
           </p>
           <ul class="nested">
-            <forecast-item class="item" descriptor="Temperature" [value]="item.temp.day" metric="&#176;"></forecast-item>
-            <forecast-item class="item" descriptor="Cloudy" [value]="item.clouds"></forecast-item>
-            <forecast-item class="item" descriptor="Humidity" [value]="item.humidity"></forecast-item>
-            <forecast-item class="item" descriptor="Wind" [value]="item.speed"></forecast-item>
+            <forecast-item
+              class="item"
+              descriptor="Temperature"
+              [value]="item.temp.day"
+              metric="&#176;"
+            ></forecast-item>
+            <forecast-item
+              class="item"
+              descriptor="Cloudy"
+              [value]="item.clouds"
+            ></forecast-item>
+            <forecast-item
+              class="item"
+              descriptor="Humidity"
+              [value]="item.humidity"
+            ></forecast-item>
+            <forecast-item
+              class="item"
+              descriptor="Wind"
+              [value]="item.speed"
+            ></forecast-item>
           </ul>
         </li>
       </ul>

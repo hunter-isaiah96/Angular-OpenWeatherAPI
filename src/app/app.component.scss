@@ -3,245 +3,242 @@ $hamburger-hover-opacity: 1;
 @import "../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
 
 .current-weather {
+  display: flex;
+  flex: 0.7;
+  padding: 3rem 6rem;
+  flex-direction: column;
+
+  .logo {
+    flex: 1;
+    font-weight: 800;
+  }
+
+  .details {
     display: flex;
-    flex: .7;
-    padding: 3rem 6rem;
-    flex-direction: column;
+    align-items: center;
 
-    .logo {
-        flex: 1;
-        font-weight: 800;
+    // margin-bottom: 5rem;
+    & > * {
+      margin-left: 20px;
     }
 
-    .details {
-        display: flex;
-        align-items: center;
-
-        // margin-bottom: 5rem;
-        &>* {
-            margin-left: 20px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 10em;
-            font-weight: normal;
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: 0;
-            display: inline-block;
-            font-size: 50px;
-            font-weight: 800;
-        }
-
-        span {
-            display: block;
-            font-size: 17px;
-            font-weight: 300;
-        }
+    h1 {
+      margin: 0;
+      font-size: 10em;
+      font-weight: normal;
     }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+      display: inline-block;
+      font-size: 50px;
+      font-weight: 800;
+    }
+
+    span {
+      display: block;
+      font-size: 17px;
+      font-weight: 300;
+    }
+  }
 }
 
 .menu {
-    flex: .3;
-    height: 100vh;
-    overflow: auto;
-    padding: 70px;
-    background-color: rgb(31, 34, 49, .8);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
+  flex: 0.3;
+  height: 100vh;
+  overflow: auto;
+  padding: 70px;
+  background-color: rgb(31, 34, 49, 0.8);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
 
-    &::-webkit-scrollbar {
-        width: 5px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #59557a;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #3e3b57;
+    border-radius: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    background: none;
+    border-bottom: 1px solid grey;
+    transition: border-color 0.2s ease-in-out;
+    outline: 0;
+    color: white;
+    font-size: 17px;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    &:focus {
+      border-color: white;
+    }
+  }
+
+  section {
+    &:not(:last-child) {
+      padding-bottom: 45px;
+      border-bottom: 1px solid grey;
+    }
+    .title {
+      font-size: 17px;
+      font-weight: 700;
+      // margin-top: 35px;
+      padding-top: 40px;
     }
 
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
+    ul {
+      &.nested {
+        margin-left: 50px;
+        margin-top: 35px;
+      }
 
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #59557a;
-        border-radius: 10px;
-    }
+      &:not(.nested) {
+        margin-top: 45px;
+      }
 
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #3e3b57;
-        border-radius: 10px;
-    }
-
-    input {
+      .heading {
         width: 100%;
-        padding: 10px 0;
-        border: none;
-        background: none;
-        border-bottom: 1px solid grey;
-        transition: border-color 0.2s ease-in-out;
-        outline: 0;
-        color: white;
-        font-size: 17px;
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            /* display: none; <- Crashes Chrome on hover */
-            -webkit-appearance: none;
-            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-        }
-        &:focus {
-            border-color: white;
-            ;
-        }
+        font-weight: 700;
+      }
+
+      li.has-list:not(:last-child) {
+        margin-bottom: 35px;
+      }
     }
-
-    section {
-        &:not(:last-child) {
-            padding-bottom: 45px;
-            border-bottom: 1px solid grey;
-        }
-        .title {
-            font-size: 17px;
-            font-weight: 700;
-            // margin-top: 35px;
-            padding-top: 40px;
-        }
-
-        ul {
-            &.nested {
-                margin-left: 50px;
-                margin-top: 35px;
-            }
-
-            &:not(.nested) {
-                margin-top: 45px;
-            }
-
-            .heading {
-                width: 100%;
-                font-weight: 700;
-            }
-
-            li.has-list:not(:last-child) {
-                margin-bottom: 35px;
-            }
-        }
-    }
+  }
 }
 
 .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    padding: 20px;
-    outline: 0;
-    color: white;
-    z-index: 1000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 20px;
+  outline: 0;
+  color: white;
+  z-index: 1000000;
 }
 
 @media screen and (max-width: 559px) {
-    .current-weather {
-        flex: 1;
-        text-align: center;
-        padding: 2em;
-        justify-content: center;
-        .logo {
-            flex: 0;
-        }
-        .details {
-            display: block;
-            p {
-                margin: 0;
-            }
-            img {
-                display: block;
-                margin: auto; 
-            }
-        }
+  .current-weather {
+    flex: 1;
+    text-align: center;
+    padding: 2em;
+    justify-content: center;
+    .logo {
+      flex: 0;
     }
-    .menu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        background-color: rgb(31, 34, 49, .95);
-        transform: translateX(110%);
-        transition: transform 0.2s ease-in-out;
-        &.is-open {
-            transform: translateX(0)
-        }
-    }
-    .hamburger {
+    .details {
+      display: block;
+      p {
+        margin: 0;
+      }
+      img {
         display: block;
+        margin: auto;
+      }
     }
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgb(31, 34, 49, 0.95);
+    transform: translateX(110%);
+    transition: transform 0.2s ease-in-out;
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+  .hamburger {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 560px) and (max-width: 969px) {
-    .current-weather {
-        flex: 1;
-        text-align: center;
-        padding: 2em;
-        justify-content: center;
-        .logo {
-            flex: 0;
-        }
-        .details {
-            display: block;
-            p {
-                margin: 0;
-            }
-            img {
-                display: block;
-                margin: auto; 
-            }
-        }
+  .current-weather {
+    flex: 1;
+    text-align: center;
+    padding: 2em;
+    justify-content: center;
+    .logo {
+      flex: 0;
     }
-    .menu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 70%;
-        transform: translateX(110%);
-        transition: transform 0.2s ease-in-out;
-        &.is-open {
-            transform: translateX(0)
-        }
-    }
-    .hamburger {
+    .details {
+      display: block;
+      p {
+        margin: 0;
+      }
+      img {
         display: block;
+        margin: auto;
+      }
     }
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    transform: translateX(110%);
+    transition: transform 0.2s ease-in-out;
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+  .hamburger {
+    display: block;
+  }
 }
-
 
 @media screen and (min-width: 970px) and (max-width: 1179px) {
-    .current-weather {
-        flex: .6;
-        padding: 2rem 4rem;
-        .details {
-            h1 {
-                font-size: 3em;
-            }
-            p {
-                font-size: 1.5em;
-            }
-        }
+  .current-weather {
+    flex: 0.6;
+    padding: 2rem 4rem;
+    .details {
+      h1 {
+        font-size: 3em;
+      }
+      p {
+        font-size: 1.5em;
+      }
     }
-    .menu {
-        flex: .4;
-    }
+  }
+  .menu {
+    flex: 0.4;
+  }
 }
 
-
 @media screen and (min-width: 1180px) and (max-width: 1449px) {
-    .current-weather {
-        .details {
-            h1 {
-                font-size: 6em;
-            }
-            p {
-                font-size: 2em;
-            }
-        }
+  .current-weather {
+    .details {
+      h1 {
+        font-size: 6em;
+      }
+      p {
+        font-size: 2em;
+      }
     }
+  }
 }
