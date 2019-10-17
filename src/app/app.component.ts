@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
+import * as moment from "moment";
 import { WeatherApiService } from "./service/weather-api.service";
 import { ForecastModel } from "./models/forecast";
-import * as moment from "moment";
+import { catchError } from "rxjs/operators";
+import { handleError } from "./errorHandler";
 
 @Component({
   selector: "app-root",
@@ -11,22 +13,23 @@ import * as moment from "moment";
 export class AppComponent {
   moment = moment;
   title = "weather-app";
-  forecast: ForecastModel;
+  forecast: ForecastModel = new ForecastModel();
   date = moment().format(`hh:mm - dddd, D MMM 'YY`);
   menuOpen = false;
 
-  constructor(private weatherService: WeatherApiService) {
-    if (navigator.geolocation)
-      this.forecast = this.weatherService.getForecastGeo();
-    else this.forecast = this.weatherService.getForecast("07104");
+  constructor(private weatherService: WeatherApiService) {}
 
-    setInterval(
-      () => (this.date = moment().format(`hh:mm - dddd, D MMM 'YY`)),
-      1000
-    );
+  ngOnInit() {
+    this.weatherService
+      .getForecast(!!navigator.geolocation)
+      .pipe(catchError(handleError))
+      .subscribe(forecast => (this.forecast = forecast));
   }
 
   getWeatherData(form) {
-    this.forecast = this.weatherService.getForecast(form.form.value.zip);
+    this.weatherService
+      .getForecast(false, { zip: form.form.value.zip })
+      .pipe(catchError(handleError))
+      .subscribe(forecast => (this.forecast = forecast));
   }
 }

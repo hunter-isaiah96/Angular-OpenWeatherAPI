@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "forecast-item",
@@ -10,12 +10,8 @@ import { Component, OnInit, Input } from "@angular/core";
     </li>
   `
 })
-export class ForecastItemComponent implements OnInit {
+export class ForecastItemComponent {
   @Input() descriptor: string;
   @Input() value: string;
   @Input() metric: string = "%";
-
-  constructor() {}
-
-  ngOnInit() {}
 }
