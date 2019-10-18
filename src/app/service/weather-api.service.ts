@@ -20,7 +20,7 @@ export class WeatherApiService {
     // Check for GeoLocation/Navigator API
     if (geoLocation) {
       // Create Observable for GeoLocation/Navigator coordinates
-      const geolocation = Observable.create(sub => {
+      const geolocation = Observable.create((sub: any) => {
         navigator.geolocation.getCurrentPosition(position => {
           sub.next(position["coords"]);
           sub.complete();
@@ -29,7 +29,7 @@ export class WeatherApiService {
       // Chain Observables
       return geolocation.pipe(
         mergeMap((position: any) =>
-        // Checking if coordinates exist, if not use the default api call
+          // Checking if coordinates exist, if not use the default api call
           position.latitude
             ? this.callApi({
                 lat: position["latitude"],
@@ -43,9 +43,6 @@ export class WeatherApiService {
     return this.callApi({ zip: params["zip"] });
   };
 
-  callApi(params:any): Observable<ForecastModel> {
-    return this.http.get<ForecastModel>(this.url, {
-      params: params
-    });
-  }
+  callApi = (params: any): Observable<ForecastModel> =>
+    this.http.get<ForecastModel>(this.url, { params: params });
 }
