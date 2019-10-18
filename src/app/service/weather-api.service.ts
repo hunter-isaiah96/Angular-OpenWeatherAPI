@@ -24,13 +24,19 @@ export class WeatherApiService {
         navigator.geolocation.getCurrentPosition(position => {
           sub.next(position["coords"]);
           sub.complete();
+        }, error => {
+          if (error.code == error.PERMISSION_DENIED) {
+            console.log('bruh')
+            sub.next()
+            sub.complete()
+          }
         });
       });
       // Chain Observables
       return geolocation.pipe(
         mergeMap((position: any) =>
           // Checking if coordinates exist, if not use the default api call
-          position.latitude
+          position
             ? this.callApi({
                 lat: position["latitude"],
                 lon: position["longitude"]
