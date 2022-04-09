@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.9",
     "hamburgers": "^1.1.3",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
